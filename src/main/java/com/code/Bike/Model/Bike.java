@@ -47,3 +47,7 @@ public class Bike {
     @Enumerated(EnumType.STRING)
     private BikeStatus status;
 }
+
+
+
+
