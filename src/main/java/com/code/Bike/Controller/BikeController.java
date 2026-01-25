@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/bike")
 public class BikeController {
@@ -15,6 +17,12 @@ public class BikeController {
 
     @PostMapping("/add")
    public Bike add(@RequestBody Bike bike){
-       return bikeService.saveBike(bike);
+        return bikeService.saveBike(bike);
    }
+
+   @GetMapping("/all")
+   public ResponseEntity<List<Bike>> getAll(){
+        return bikeService.getAlll();
+   }
+
 }
