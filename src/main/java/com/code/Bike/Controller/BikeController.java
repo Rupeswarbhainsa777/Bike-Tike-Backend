@@ -25,4 +25,9 @@ public class BikeController {
         return bikeService.getAlll();
    }
 
+   @GetMapping("/get/{id}")
+   public ResponseEntity<Bike> get(@PathVariable int id){
+        return bikeService.get(id);
+
+   }
 }

@@ -32,4 +32,16 @@ public class BikeService {
         }
         return new ResponseEntity<>(new ArrayList<>(),HttpStatus.BAD_REQUEST);
     }
+
+    public ResponseEntity<Bike> get(int id){
+        try {
+            return bikeRepository.findById(id)
+                    .map(bike -> new ResponseEntity<>(bike, HttpStatus.OK))
+                    .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+    }
 }
