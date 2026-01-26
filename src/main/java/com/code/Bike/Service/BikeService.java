@@ -44,4 +44,19 @@ public class BikeService {
         }
 
     }
+    public ResponseEntity<String> delete(int id) {
+        try {
+            if (!bikeRepository.existsById(id)) {
+                return new ResponseEntity<>("Bike not found", HttpStatus.NOT_FOUND);
+            }
+
+            bikeRepository.deleteById(id);
+            return new ResponseEntity<>("Bike deleted successfully", HttpStatus.OK);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("Error while deleting bike", HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }
