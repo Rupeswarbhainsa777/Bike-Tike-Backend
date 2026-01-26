@@ -30,4 +30,9 @@ public class BikeController {
         return bikeService.get(id);
 
    }
+   @DeleteMapping("/delete/{id}")
+   public ResponseEntity<String> delete(@PathVariable int id){
+        return bikeService.delete(id);
+
+   }
 }
