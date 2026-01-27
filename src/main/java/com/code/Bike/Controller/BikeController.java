@@ -35,4 +35,9 @@ public class BikeController {
         return bikeService.delete(id);
 
    }
+   @PutMapping("/update/{id}")
+   public ResponseEntity<Bike> updateBike(@PathVariable int id,
+                                          @RequestBody Bike bike){
+       return bikeService.updatedBike(id,bike);
+   }
 }
