@@ -59,4 +59,36 @@ public class BikeService {
         }
     }
 
+    public ResponseEntity<Bike> updatedBike(int id, Bike bike) {
+        try {
+            return bikeRepository.findById(id)
+                    .map(existingBike -> {
+
+                        existingBike.setName(bike.getName());
+                        existingBike.setBrand(bike.getBrand());
+                        existingBike.setImage(bike.getImage());
+                        existingBike.setPrice(bike.getPrice());
+                        existingBike.setColour(bike.getColour());
+                        existingBike.setMileage(bike.getMileage());
+                        existingBike.setEngineCc(bike.getEngineCc());
+                        existingBike.setTopSpeed(bike.getTopSpeed());
+                        existingBike.setTransmission(bike.getTransmission());
+                        existingBike.setFuelTankCapacity(bike.getFuelTankCapacity());
+                        existingBike.setYearOfLaunch(bike.getYearOfLaunch());
+                        existingBike.setBikeType(bike.getBikeType());
+                        existingBike.setFuelType(bike.getFuelType());
+                        existingBike.setStatus(bike.getStatus());
+
+                        Bike updatedBike = bikeRepository.save(existingBike);
+                        return new ResponseEntity<>(updatedBike, HttpStatus.OK);
+                    })
+                    .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
 }
