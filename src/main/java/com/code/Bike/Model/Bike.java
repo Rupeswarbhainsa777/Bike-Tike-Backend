@@ -20,7 +20,8 @@ public class Bike {
 
     private String brand;
 
-    private String image;   // image URL or path
+    @Column(length = 1000)
+    private String image;
 
     private Long price;
 
