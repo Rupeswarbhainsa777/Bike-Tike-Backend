@@ -1,6 +1,5 @@
 package com.code.Bike.config;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,21 +16,24 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity security){
-        security.csrf(cost->cost.disable());
-        security.authorizeHttpRequests(req->req.anyRequest().authenticated());
-        security.sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+    public SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
+        security
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(req -> req.anyRequest().authenticated())
+                .sessionManagement(session ->
+                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         return security.build();
     }
 
-    public UserDetailsService userDetailsService(){
+    @Bean
+    public UserDetailsService userDetailsService() {
         UserDetails userDetails = User.withDefaultPasswordEncoder()
                 .username("Roja")
                 .password("1234")
                 .roles("USER")
                 .build();
 
-        return  new InMemoryUserDetailsManager(userDetails);
+        return new InMemoryUserDetailsManager(userDetails);
     }
 }
