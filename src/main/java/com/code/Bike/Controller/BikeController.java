@@ -23,6 +23,7 @@ public class BikeController {
 
    @GetMapping("/all")
    public ResponseEntity<List<Bike>> getAll(){
+       System.out.println("I am called");
         return bikeService.getAlll();
    }
 
