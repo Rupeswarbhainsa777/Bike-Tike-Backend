@@ -20,7 +20,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
         security
                 .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(req -> req.anyRequest().authenticated())
+                .authorizeHttpRequests(req -> req.requestMatchers("/reg").permitAll()
+                        .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

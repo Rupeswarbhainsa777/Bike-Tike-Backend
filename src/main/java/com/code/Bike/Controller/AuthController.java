@@ -18,7 +18,7 @@ public class AuthController {
 
 
 
-    @PostMapping("/add")
+    @PostMapping("/reg")
     public User addUser(@RequestBody User user){
          return userService.adduser(user);
     }
